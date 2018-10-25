@@ -1,57 +1,12 @@
-# Nomster — Lesson 39 Checklist
+# TA Assessment Nomster
 
-* [Step 1 (Setting up the pipeline for photos)](https://github.com/university-bootcamp/checklist-nomster-39/compare/step-1)
-* [Step 2 (Making the image field work)](https://github.com/university-bootcamp/checklist-nomster-39/compare/step-1...step-2)
-* [Step 3 (Switching over to use AWS S3)](https://github.com/university-bootcamp/checklist-nomster-39/compare/step-2...step-3)
+Nomster is a challenging project.  The following is a broken application with many of the same problems students face when building the application on their own.
 
-## Step 1: Setting up the pipeline for photos
+## Known Issues
 
-* Generate a model for the photos database table.
+* Visiting the page to view a place throws an error
+* New places can't be created
 
-```
-rails g model photo
-```
+Also the student would be in the process of trying to make it possible to create photos in the database, but unsure of how to fix their application.
 
-* Add the relationships in the `app/models/place.rb` and `app/models/photo.rb` files
-* Update `app/controllers/places_controller.rb` in the `show` action to build a `@photo = Photo.new`
-* Include the simple_form in the `app/views/places/show.html.erb`
-
-* Generate a controller for the `photos`.
-
-```
-rails g controller photos
-```
-
-* Setup boilerplate code in the `app/controllers/photos_controller.rb`.
-* Adjust the `config/routes.rb` file to connect the create action with the `place_id` in the params.
-* Update the `app/views/places/show.html.erb` to make the form post to the correct URL.
-
-## Step 2: Making the Image Field Work
-
-* Add the gem to the `Gemfile`
-
-```
-rails g migration alter_photos_add_picture
-```
-
-* Adjust the `db/migrate/XXXXX_alter_photos_add_picture.rb` migration.
-* Adjust the `app/models/photo.rb` file to mount the uploader as expected.
-* *Restart the server* — skipping this step will produce a `uninitialized constant Photo::PictureUploader` error.
-* Add the field in `app/views/places/show.html.erb`.
-* Alter the `app/controllers/photos_controller.rb` file to include the `picture` field.
-* Add the `image_tag` in the `app/views/places/show.html.erb`.
-
-## Step 3: Setting up Image Uploading with Amazon S3
-
-* Add `fog-aws` to `Gemfile`.
-* Adjust the `config/application.yml` file (not checked into GitHub) to have this format.
-
-```
-GEOCODER_API_KEY: "xyz"
-AWS_ACCESS_KEY: "xyz"
-AWS_SECRET_KEY: "xyz"
-AWS_BUCKET: "xyz"
-```
-
-* Create the `config/initializers/carrierwave.rb` with the relevant code.
-* Switch the `app/uploaders/picture_uploader.rb` to use `:fog` instead of `:file`.
+*Keep in mind*: while the student has tried their best, their app will not work.  Students will also not always tell you the truth (they may be mis-remembering the order of the steps they did or tell you they've made changes that they in fact haven't).
