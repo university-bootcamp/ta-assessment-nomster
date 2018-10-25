@@ -91,8 +91,13 @@
   <br style="clear:both" />
 
 
-  <%= simple_form_for @photo do |f| %>
+  <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
     <%= f.input :caption %>
     <%= f.submit %>
+  <% end %>
+
+  <% @place.photos.each do |photo| %>
+    <strong><%= photo.id %>:</strong>
+    <%= photo.caption %>
   <% end %>
 </div>
